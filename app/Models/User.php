@@ -10,6 +10,16 @@ use Illuminate\Notifications\Notifiable;
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
+    public function tasks()
+{
+    return $this->hasMany(Task::class);
+}
+
+public function assignedTasks()
+{
+    return $this->belongsToMany(Task::class, 'task_user');
+}
+
     use HasFactory, Notifiable;
 
     /**
